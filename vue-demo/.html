@@ -1,0 +1,29 @@
+<!-- id标识vue作用的范围 -->
+<div id="app">
+     <form action="save" v-on:submit.prevent="onSubmit">
+        <label for="username">
+            <input type="text" id="username" v-model="user.username">
+            <button type="submit">保存</button>
+        </label>
+    </form>
+</div>
+<script src="vue.min.js"></script>
+<script>
+    // 创建一个vue对象
+    new Vue({
+        el: '#app',//绑定vue作用的范围
+        data: {//定义页面中显示的模型数据
+            user: {}
+        },
+        methods:{
+            onSubmit() {
+                if (this.user.username) {
+                    console.log('提交表单')
+                } else {
+                    alert('请输入用户名')
+                }
+            }
+        }
+    })
+
+</script>

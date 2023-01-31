@@ -1,0 +1,32 @@
+<!-- id标识vue作用的范围 -->
+<div id="app">
+    <!-- v-on 指令绑定事件，click指定绑定的事件类型，事件发生时调用vue中methods节点中定义的方法 -->
+    <button v-on:click="search()">查询</button>
+    <p>您要查询的是：{{searchMap.keyWord}}</p>
+    <p><a v-bind:href="result.site" target="_blank">{{result.title}}</a></p>
+</div>
+<script src="vue.min.js"></script>
+<script>
+
+    // 创建一个vue对象
+    new Vue({
+        el: '#app',//绑定vue作用的范围
+        data: {//定义页面中显示的模型数据
+            searchMap:{
+                keyWord: 'pxlngu'
+            },
+            //查询结果
+            result: {}
+        },
+        methods:{
+            search(){
+                console.log('search'),
+                this.result = {
+                    "title":"pxlngu",
+                    "site":"http://www.pxlngu.com"
+                }
+            }
+        }
+    })
+
+</script>

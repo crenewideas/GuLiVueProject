@@ -1,0 +1,43 @@
+<!-- id标识vue作用的范围 -->
+<div id="app">
+    <h1>Hello Pxl!</h1>
+    <table border="1">
+        <tr>
+            <td>id</td>
+            <td>姓名</td>
+        </tr>
+        <tr v-for="item in memberList">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+        </tr>
+    </table>
+</div>
+<script src="vue.min.js"></script>
+<script src="js/axios.min.js"></script>
+<script>
+    
+    var app = new Vue({
+        el: '#app',
+        data: {
+            memberList: []//数组
+        },
+        created() {
+            this.getList()
+        },
+        methods: {
+            getList(id) {
+                //vm = this
+                axios.get('http://localhost:8001/eduservice/teacher/list')
+                .then(response => {
+                    console.log(response)
+                    console.log(response.data.resultData)
+                    this.memberList = response.data.resultData
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+            }
+        }
+    })
+
+</script>
